@@ -110,9 +110,25 @@ describe("documentacao de contexto", () => {
     expect(docsReadme).toContain("index.md");
     expect(docsReadme).toContain("guia-nao-tecnico.md");
     expect(docsReadme).toContain("o-que-a-base-ja-faz.md");
+    expect(docsReadme).toContain("checklist-alinhamento-pdfs.md");
     expect(docsIndex).toContain("./guia-nao-tecnico.md");
     expect(docsIndex).toContain("./o-que-a-base-ja-faz.md");
+    expect(docsIndex).toContain("./checklist-alinhamento-pdfs.md");
     expect(docsIndex).toContain("./session/current-state.md");
     expect(docsIndex).toContain("./logbook/README.md");
+  });
+
+  it("reforça nos fluxos que mudancas estruturais devem atualizar o guia nao tecnico", () => {
+    const conventions = readProjectFile("CONVENTIONS.md");
+    const featureWorkflow = readProjectFile("docs/tasks/feature-workflow.md");
+    const bugfixWorkflow = readProjectFile("docs/tasks/bugfix-workflow.md");
+    const hardwareWorkflow = readProjectFile("docs/tasks/hardware-workflow.md");
+    const releaseWorkflow = readProjectFile("docs/tasks/release-workflow.md");
+
+    expect(conventions).toContain("docs/guia-nao-tecnico.md");
+    expect(featureWorkflow).toContain("docs/guia-nao-tecnico.md");
+    expect(bugfixWorkflow).toContain("docs/guia-nao-tecnico.md");
+    expect(hardwareWorkflow).toContain("docs/guia-nao-tecnico.md");
+    expect(releaseWorkflow).toContain("docs/guia-nao-tecnico.md");
   });
 });

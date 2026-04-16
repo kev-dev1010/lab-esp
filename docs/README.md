@@ -7,6 +7,7 @@ Esta pasta reune os materiais que explicam como o repositorio esta organizado e 
 - `index.md`: indice mestre de navegacao
 - `guia-nao-tecnico.md`: explicacao simples do papel de cada pasta e arquivo
 - `o-que-a-base-ja-faz.md`: resumo simples do que a base ja entrega e do que ainda falta
+- `checklist-alinhamento-pdfs.md`: lista rastreavel do que ja foi absorvido dos PDFs e do que ainda falta
 - `architecture.md`: visao estrutural do projeto
 - `decisions.md`: indice rapido das principais decisoes
 

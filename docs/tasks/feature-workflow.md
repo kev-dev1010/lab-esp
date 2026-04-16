@@ -24,6 +24,7 @@ Voltar para o [indice mestre](../index.md).
 5. implementar em mudancas pequenas
 6. validar com `./scripts/ci`
 7. atualizar documentacao se a feature mudar fluxo, comando ou estrutura
+8. se algum arquivo ou diretorio foi adicionado, removido, renomeado ou teve sua responsabilidade alterada, atualizar tambem `docs/guia-nao-tecnico.md`
 
 ## Se envolver hardware
 

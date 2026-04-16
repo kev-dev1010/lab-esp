@@ -26,6 +26,7 @@ Este arquivo define combinados de organizacao e manutencao do projeto `lab-esp`.
 - evitar misturar refatoracao e funcionalidade nova no mesmo passo
 - adicionar ou ajustar testes quando o comportamento mudar
 - atualizar documentacao quando estrutura, processo ou contratos mudarem
+- qualquer arquivo ou diretorio adicionado, removido, renomeado ou com responsabilidade alterada deve ser refletido em `docs/guia-nao-tecnico.md`
 - registrar decisoes relevantes em `docs/adr/`
 
 ## Regras de codigo

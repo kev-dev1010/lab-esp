@@ -25,6 +25,7 @@ Voltar para o [indice mestre](../index.md).
 5. corrigir com a menor mudanca possivel
 6. validar com `./scripts/ci`
 7. se o problema for recorrente, registrar em [known-issues.md](../knowledge/known-issues.md)
+8. se a correcao mudar a estrutura do projeto, atualizar tambem `docs/guia-nao-tecnico.md`
 
 ## Prompt relacionado
 

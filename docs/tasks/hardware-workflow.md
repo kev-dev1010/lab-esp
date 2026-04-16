@@ -25,6 +25,7 @@ Voltar para o [indice mestre](../index.md).
 4. comparar resultado esperado com resultado observado
 5. anotar sintomas, mensagens e comportamento fisico
 6. se for recorrente, promover do logbook para `known-issues.md`
+7. se a tarefa alterar arquivos, diretorios ou responsabilidades do projeto, refletir isso em `docs/guia-nao-tecnico.md`
 
 ## Relacionados
 

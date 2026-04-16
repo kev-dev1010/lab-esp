@@ -132,6 +132,7 @@ As referencias usadas para montar esta base giravam em torno de algumas ideias p
 - pequenos passos validaveis
 - documentacao viva
 - separacao entre contexto atual e historico antigo
+- um checklist rastreavel para acompanhar o que ainda falta absorver das referencias
 
 ## O que ainda nao esta pronto
 

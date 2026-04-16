@@ -13,6 +13,7 @@ Este arquivo e a porta de entrada para navegar o contexto do projeto sem carrega
 
 - [Guia nao tecnico do projeto](./guia-nao-tecnico.md)
 - [O que a base ja faz](./o-que-a-base-ja-faz.md)
+- [Checklist de alinhamento com os PDFs](./checklist-alinhamento-pdfs.md)
 
 ## Fluxos por tarefa
 

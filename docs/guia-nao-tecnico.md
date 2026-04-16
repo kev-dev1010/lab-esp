@@ -26,9 +26,12 @@ Hoje o projeto ja oferece:
 - documentacao separada por tipo de uso
 - modelos de prompt para tarefas recorrentes com IA
 - um jeito de separar o que e contexto permanente, o que e tarefa atual e o que e historico
+- um bloco de estado atual da sessao, separado do historico bruto
 - preparacao para um uso futuro de IA com mais autonomia, mas com limites
 
 Se voce quiser um resumo mais focado em capacidades e configuracoes, veja [o-que-a-base-ja-faz.md](./o-que-a-base-ja-faz.md).
+
+Se voce quiser acompanhar o que ainda falta para ficar alinhado com os PDFs usados como referencia, veja [checklist-alinhamento-pdfs.md](./checklist-alinhamento-pdfs.md).
 
 ## Como pensar a documentacao
 
@@ -49,6 +52,12 @@ Se voce quer se localizar rapido, use esta ordem:
 2. [README.md](../README.md): visao geral do projeto
 3. [AGENTS.md](../AGENTS.md): definicoes oficiais do projeto
 4. [docs/session/current-state.md](./session/current-state.md): onde o trabalho esta agora
+
+## Regra importante de manutencao
+
+Sempre que o projeto ganhar, perder, renomear ou mudar a responsabilidade de um arquivo ou diretorio importante, este guia deve ser atualizado.
+
+Em outras palavras: se a estrutura muda, o guia nao tecnico precisa refletir essa mudanca.
 
 ## O que cada grupo de arquivos faz
 
@@ -120,6 +129,10 @@ Este arquivo. Ele ajuda pessoas nao tecnicas a entenderem o projeto.
 
 Explica, em linguagem simples, o que a base ja entrega, o que esta configurado e o que ainda nao esta pronto.
 
+### `docs/checklist-alinhamento-pdfs.md`
+
+Mostra, em formato de checklist, o que ja foi absorvido dos PDFs de referencia e o que ainda falta virar pratica real no projeto.
+
 ### `docs/context/`
 
 Guarda o contexto que tende a ser carregado com frequencia.
@@ -148,6 +161,8 @@ Ali ficam orientacoes para:
 - revisar seguranca
 - trabalhar com hardware e serial
 - preparar release
+
+Esses fluxos agora tambem devem lembrar que mudancas estruturais do projeto precisam ser refletidas neste guia nao tecnico.
 
 ### `docs/knowledge/`
 
@@ -292,6 +307,7 @@ Guarda um ambiente padronizado por container para desenvolvimento, se isso for u
 - quer se localizar na documentacao: `docs/index.md`
 - quer uma explicacao simples do projeto: `docs/guia-nao-tecnico.md`
 - quer entender o que a base ja faz: `docs/o-que-a-base-ja-faz.md`
+- quer ver o que ainda falta em relacao aos PDFs: `docs/checklist-alinhamento-pdfs.md`
 - quer ver definicoes oficiais: `AGENTS.md`
 - quer ver regras do repositorio: `CONVENTIONS.md`
 - quer ver limites de IA: `POLICY_AI.md`
