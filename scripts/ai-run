@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+if grep -q "AI_MODE: assistido" AGENTS.md 2>/dev/null; then
+  log "Modo atual assistido. Execucao agentica real ainda nao habilitada."
+fi
+
+if grep -q "AI_MODE: agentic" AGENTS.md 2>/dev/null; then
+  [ -f "sandbox/ai-jail/config.yml" ] || fail "Sandbox nao habilitado. Rode ./scripts/ai-jail-enable"
+fi
+
+placeholder "Definir comando real do agente quando a estrategia de uso for escolhida"

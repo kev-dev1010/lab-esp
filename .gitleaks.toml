@@ -1,0 +1,9 @@
+title = "lab-esp gitleaks config"
+
+[allowlist]
+description = "Arquivos de exemplo e textos de referencia permitidos"
+paths = [
+  '''\.env\.example$''',
+  '''\.txt$''',
+  '''\.md$'''
+]

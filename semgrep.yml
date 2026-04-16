@@ -1,0 +1,9 @@
+rules:
+  - id: no-console-log-in-core
+    message: Evite deixar logs permanentes em modulos centrais sem necessidade.
+    severity: INFO
+    languages: [typescript]
+    paths:
+      include:
+        - src/**/*.ts
+    pattern: console.log(...)

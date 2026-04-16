@@ -1,0 +1,7 @@
+{
+  "name": "akita-ia-dev-base",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "./scripts/setup"
+}

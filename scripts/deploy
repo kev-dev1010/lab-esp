@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+log "Deploy placeholder"
+log "Estrategia atual: release manual por branch principal ou tag"
+log "Detalhes operacionais em docs/runbooks/deploy.md"

@@ -1,0 +1,7 @@
+# Lista de exemplo de comandos permitidos
+./scripts/setup
+./scripts/format
+./scripts/lint
+./scripts/test
+./scripts/security
+./scripts/ci

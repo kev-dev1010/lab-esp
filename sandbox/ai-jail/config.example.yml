@@ -1,0 +1,9 @@
+mode: placeholder
+description: configuracao base de isolamento para automacao com IA
+filesystem:
+  writable_paths:
+    - .
+network:
+  policy: TODO
+commands:
+  allowlist_file: sandbox/ai-jail/allowlist.example.txt

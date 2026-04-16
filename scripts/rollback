@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+log "Rollback placeholder"
+log "Estrategia atual: voltar para a ultima versao estavel marcada por tag ou release conhecida"
+log "Detalhes operacionais em docs/runbooks/rollback.md"

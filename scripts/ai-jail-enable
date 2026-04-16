@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+mkdir -p sandbox/ai-jail
+if [ ! -f "sandbox/ai-jail/config.yml" ] && [ -f "sandbox/ai-jail/config.example.yml" ]; then
+  cp sandbox/ai-jail/config.example.yml sandbox/ai-jail/config.yml
+  log "Arquivo sandbox/ai-jail/config.yml criado a partir do exemplo"
+fi
+
+placeholder "Definir ativacao real do sandbox"
