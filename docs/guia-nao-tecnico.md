@@ -1,135 +1,253 @@
-# Guia Nao Tecnico da Estrutura do Repositorio
+# Guia Nao Tecnico do Projeto
 
-Este documento foi escrito para quem nao programa no dia a dia, mas precisa entender como este repositorio esta organizado, onde cada assunto fica e qual arquivo procurar em cada situacao.
+Este documento foi escrito para quem nao programa no dia a dia, mas precisa entender como o projeto esta organizado, onde cada assunto fica e como navegar pelos arquivos sem se perder.
 
-## O que este projeto faz
+## O que e o `lab-esp`
 
-O projeto `lab-esp` e uma base de trabalho para testes com ESP32. Ele foi preparado para ajudar a validar firmware, comunicacao serial, sensores e rotinas de teste de forma organizada.
+O `lab-esp` e uma base de trabalho para testes com ESP32, sensores e comunicacao serial.
 
-Ele ainda nao e o produto industrial final. Nesta fase, ele funciona como base de laboratorio e validacao.
+Ele foi montado para que o time consiga:
 
-## Como pensar esta estrutura
+- testar ideias com mais ordem
+- repetir validacoes com menos improviso
+- registrar o que funcionou e o que deu problema
+- preparar o projeto para crescer sem virar bagunca
 
-Este repositorio foi dividido em blocos de responsabilidade:
+O projeto ainda nao e o produto final industrial. Nesta fase, ele e uma base de laboratorio e validacao.
 
-- arquivos da raiz explicam regras gerais e configuracoes principais
-- `docs/` guarda explicacoes e procedimentos
-- `src/` guarda o codigo principal
-- `tests/` guarda os testes automatizados
-- `scripts/` guarda os comandos oficiais
-- `prompts/` guarda modelos de instrucao reutilizaveis
-- `sandbox/` prepara o isolamento para automacao futura com IA
-- `infra/` organiza ambientes e deploy
+## O que esta base ja entrega
 
-## Arquivos da raiz
+Hoje o projeto ja oferece:
 
-### `README.md`
+- uma organizacao clara de arquivos e pastas
+- comandos principais para instalar, validar, testar e checar seguranca
+- testes automatizados iniciais
+- esteira de validacao local e no GitHub
+- documentacao separada por tipo de uso
+- modelos de prompt para tarefas recorrentes com IA
+- um jeito de separar o que e contexto permanente, o que e tarefa atual e o que e historico
+- preparacao para um uso futuro de IA com mais autonomia, mas com limites
 
-E a porta de entrada do projeto. Resume objetivo, stack escolhida, comandos e estado atual.
+Se voce quiser um resumo mais focado em capacidades e configuracoes, veja [o-que-a-base-ja-faz.md](./o-que-a-base-ja-faz.md).
 
-### `AGENTS.md`
+## Como pensar a documentacao
 
-Guarda as definicoes centrais do projeto. Mesmo tendo nome tecnico, ele funciona como ficha oficial das escolhas feitas.
+A documentacao agora foi dividida em quatro camadas principais:
 
-### `CONVENTIONS.md`
+- contexto permanente: o que quase sempre precisa ser consultado
+- contexto por tarefa: o que so entra quando a tarefa pede
+- estado atual: onde o trabalho esta agora
+- historico: o que aconteceu no passado
 
-Guarda os combinados de organizacao do repositorio e do codigo.
+Essa separacao existe para evitar um problema comum: usar diario antigo como se fosse resumo atual.
 
-### `POLICY_AI.md`
+## Onde comecar
 
-Explica como IA pode ser usada e quais sao os limites de seguranca e revisao humana.
+Se voce quer se localizar rapido, use esta ordem:
 
-### `SECURITY.md`
+1. [docs/index.md](./index.md): indice mestre da documentacao
+2. [README.md](../README.md): visao geral do projeto
+3. [AGENTS.md](../AGENTS.md): definicoes oficiais do projeto
+4. [docs/session/current-state.md](./session/current-state.md): onde o trabalho esta agora
 
-Resume a postura de seguranca do projeto e as ferramentas adotadas para isso.
+## O que cada grupo de arquivos faz
 
-### `CONTRIBUTING.md`
+### Arquivos da raiz
+
+Esses arquivos guardam as regras principais do projeto.
+
+#### `README.md`
+
+E a porta de entrada do projeto. Resume objetivo, stack, comandos e estado atual.
+
+#### `AGENTS.md`
+
+Guarda as definicoes oficiais do projeto: o que ele quer resolver, stack escolhida, regras de qualidade, seguranca, deploy e contexto minimo para novas sessoes.
+
+#### `CONVENTIONS.md`
+
+Guarda os combinados de organizacao e manutencao. E onde ficam as regras de como trabalhar neste repositorio.
+
+#### `POLICY_AI.md`
+
+Explica como IA pode ser usada aqui, o que nao pode ser enviado para modelos e quais limites devem existir.
+
+#### `SECURITY.md`
+
+Resume a postura de seguranca do projeto e quais ferramentas foram escolhidas.
+
+#### `CHANGELOG.md`
+
+Registra mudancas relevantes do projeto ao longo do tempo.
+
+#### `CONTRIBUTING.md`
 
 Explica como contribuir de forma organizada.
 
-### `CHANGELOG.md`
+#### `.env.example`
 
-Registra mudancas importantes ao longo do tempo.
+Mostra quais configuracoes de ambiente podem existir, sem guardar valores reais.
 
-### `.env.example`
+#### `package.json`
 
-Mostra quais configuracoes podem existir no ambiente local, sem guardar valores reais.
+E o centro da configuracao do projeto em Node.js. Ele define scripts e dependencias.
 
-### `.editorconfig`
+#### `tsconfig.json`, `eslint.config.js`, `.prettierrc.json`, `vitest.config.ts`
 
-Padroniza regras basicas de edicao de arquivos.
+Esses arquivos definem como o projeto valida codigo, formata arquivos e roda testes.
 
-### `.gitignore`
+#### `Dockerfile`
 
-Lista arquivos e pastas que nao devem entrar no versionamento.
-
-### `.gitattributes`
-
-Ajuda a manter consistencia tecnica entre arquivos versionados.
-
-### `.tool-versions`
-
-Registra a versao principal esperada de Node.js.
-
-### `package.json`
-
-E o arquivo central do projeto Node.js. Ele registra nome, scripts, dependencias e regras basicas de execucao.
-
-### `tsconfig.json`
-
-Define como o TypeScript deve ser validado e compilado.
-
-### `eslint.config.js`
-
-Define as regras de verificacao de qualidade do codigo.
-
-### `.prettierrc.json`
-
-Define as regras de formatacao automatica dos arquivos.
-
-### `vitest.config.ts`
-
-Define como os testes automatizados rodam e qual cobertura minima e desejada.
-
-### `semgrep.yml`
-
-Guarda a configuracao inicial de analise estatica de seguranca.
-
-### `.gitleaks.toml`
-
-Guarda a configuracao inicial do scanner de segredos.
-
-### `Dockerfile`
-
-Prepara uma imagem container para executar o projeto em ambiente controlado.
+Prepara uma forma padronizada de executar o projeto em container.
 
 ## Pasta `docs/`
 
-E a biblioteca principal do repositorio.
+Esta e a biblioteca principal do projeto.
+
+### `docs/index.md`
+
+E o mapa principal da documentacao. Quem nao sabe por onde comecar deve abrir esse arquivo.
 
 ### `docs/README.md`
 
-Indice da documentacao.
+Resume como a documentacao foi dividida.
 
 ### `docs/guia-nao-tecnico.md`
 
-Este arquivo. O objetivo dele e facilitar leitura por quem nao e tecnico.
+Este arquivo. Ele ajuda pessoas nao tecnicas a entenderem o projeto.
 
-### `docs/architecture.md`
+### `docs/o-que-a-base-ja-faz.md`
 
-Explica a estrutura esperada do projeto e como as partes se conectam.
+Explica, em linguagem simples, o que a base ja entrega, o que esta configurado e o que ainda nao esta pronto.
 
-### `docs/decisions.md`
+### `docs/context/`
 
-Resume as principais decisoes tomadas.
+Guarda o contexto que tende a ser carregado com frequencia.
 
-### `docs/adr/`
+#### `docs/context/core.md`
 
-Guarda registros formais de decisoes relevantes.
+Resume o projeto, o objetivo, os limites e a stack atual.
+
+#### `docs/context/loading-rules.md`
+
+Explica o que deve ser carregado sempre, o que deve ser carregado por tarefa e o que nao deve ser carregado por padrao.
+
+#### `docs/context/task-map.md`
+
+Funciona como um roteador. Ele diz quais arquivos consultar para cada tipo de trabalho.
+
+### `docs/tasks/`
+
+Guarda os fluxos por tipo de tarefa.
+
+Ali ficam orientacoes para:
+
+- implementar feature
+- corrigir bug
+- revisar mudanca
+- revisar seguranca
+- trabalhar com hardware e serial
+- preparar release
+
+### `docs/knowledge/`
+
+Guarda conhecimento recorrente do projeto.
+
+Ali devem entrar, com o tempo:
+
+- comandos usados com frequencia
+- problemas conhecidos
+- estrategia de testes
+- conhecimento sobre portas, serial e sensores
+- glossario
+
+### `docs/session/`
+
+Guarda o estado vivo do trabalho atual.
+
+#### `docs/session/current-state.md`
+
+Mostra onde o projeto e a sessao estao agora.
+
+Esse arquivo deve ser curto e direto.
+
+#### `docs/session/update-template.md`
+
+Serve como modelo para atualizar o estado da sessao.
+
+### `docs/logbook/`
+
+Guarda o historico cronologico.
+
+Esse historico nao e a mesma coisa que o estado atual.
+
+#### `docs/logbook/README.md`
+
+Explica como o logbook deve ser usado.
+
+#### `docs/logbook/entry-template.md`
+
+Serve como modelo para registrar acontecimentos.
 
 ### `docs/runbooks/`
 
-Guarda procedimentos operacionais como deploy, rollback e incidentes.
+Guarda os procedimentos operacionais, como deploy, rollback e incidente.
+
+Hoje esses arquivos existem, mas ainda precisam ser preenchidos com o fluxo real.
+
+### `docs/adr/`
+
+Guarda decisoes importantes de forma registrada.
+
+## Pasta `prompts/`
+
+Guarda modelos de prompt para tarefas recorrentes com IA.
+
+Hoje existem prompts para:
+
+- feature
+- bugfix
+- review
+- seguranca
+- release notes
+
+Esses arquivos ajudam a padronizar como uma tarefa e pedida.
+
+## Pasta `scripts/`
+
+Esta pasta concentra os comandos oficiais do projeto.
+
+### `scripts/setup`
+
+Prepara o ambiente local.
+
+### `scripts/format`
+
+Valida formatacao.
+
+### `scripts/lint`
+
+Valida padrao e consistencia.
+
+### `scripts/test`
+
+Roda testes e cobertura.
+
+### `scripts/security`
+
+Roda checagens de seguranca.
+
+### `scripts/ci`
+
+Executa o fluxo principal de verificacao do projeto.
+
+### `scripts/deploy` e `scripts/rollback`
+
+Existem como base, mas ainda dependem da definicao operacional completa.
+
+### `scripts/ai-dry-run`, `scripts/ai-run` e `scripts/ai-jail-enable`
+
+Existem para preparar um uso mais controlado de IA no futuro.
 
 ## Pasta `src/`
 
@@ -137,79 +255,24 @@ Guarda o codigo principal da aplicacao.
 
 ### `src/main.ts`
 
-E o ponto de entrada definido para o projeto.
+Guarda a logica principal atual.
 
 ### `src/cli.ts`
 
-E o arquivo usado para executar a aplicacao localmente sem misturar essa responsabilidade com a logica principal.
+Guarda a forma de executar o projeto localmente sem misturar isso com a logica principal.
 
 ## Pasta `tests/`
 
 Guarda os testes automatizados.
 
-### `tests/main.test.ts`
+Hoje ela ja inclui:
 
-Teste inicial da base para confirmar que a estrutura esta funcionando.
-
-## Pasta `scripts/`
-
-E o centro operacional da base. Aqui ficam os comandos oficiais do projeto.
-
-### `scripts/setup`
-
-Prepara o ambiente local e instala dependencias.
-
-### `scripts/format`
-
-Aplica formatacao automatica.
-
-### `scripts/lint`
-
-Executa verificacoes de qualidade de codigo.
-
-### `scripts/test`
-
-Executa testes e cobertura.
-
-### `scripts/security`
-
-Executa verificacoes de seguranca.
-
-### `scripts/ci`
-
-Executa a sequencia principal de validacao do projeto.
-
-### `scripts/deploy`
-
-Reservado para publicacao controlada.
-
-### `scripts/rollback`
-
-Reservado para reversao de release.
-
-### `scripts/ai-dry-run`
-
-Reservado para simulacao de automacao com IA.
-
-### `scripts/ai-run`
-
-Reservado para execucao controlada de automacao com IA.
-
-### `scripts/ai-jail-enable`
-
-Reservado para ativar isolamento em um modo agentico futuro.
-
-### `scripts/_lib.sh`
-
-Biblioteca de apoio para os demais scripts.
-
-## Pasta `prompts/`
-
-Guarda modelos de instrucao para tarefas recorrentes com IA assistida.
+- um teste da base da aplicacao
+- um teste da navegacao e integridade da documentacao
 
 ## Pasta `sandbox/`
 
-Guarda a preparacao para automacao futura com IA em ambiente isolado.
+Guarda a preparacao para uma futura automacao mais autonoma com IA em ambiente isolado.
 
 ## Pasta `infra/`
 
@@ -221,15 +284,23 @@ Guarda as automacoes do GitHub, como validacao continua e checagens de seguranca
 
 ## Pasta `.devcontainer/`
 
-Guarda um ambiente padronizado por container para desenvolvimento, caso seja usado.
+Guarda um ambiente padronizado por container para desenvolvimento, se isso for usado.
 
-## Quando procurar cada lugar
+## Como decidir qual arquivo abrir
 
 - quer entender o projeto em alto nivel: `README.md`
-- quer localizar responsabilidades de cada parte: `docs/guia-nao-tecnico.md`
-- quer ver escolhas oficiais do projeto: `AGENTS.md`
-- quer entender regras do repositorio: `CONVENTIONS.md`
-- quer saber limites de uso de IA: `POLICY_AI.md`
-- quer um procedimento operacional: `docs/runbooks/`
-- quer saber como executar validacoes: `scripts/`
-- quer ver historico de mudancas: `CHANGELOG.md`
+- quer se localizar na documentacao: `docs/index.md`
+- quer uma explicacao simples do projeto: `docs/guia-nao-tecnico.md`
+- quer entender o que a base ja faz: `docs/o-que-a-base-ja-faz.md`
+- quer ver definicoes oficiais: `AGENTS.md`
+- quer ver regras do repositorio: `CONVENTIONS.md`
+- quer ver limites de IA: `POLICY_AI.md`
+- quer saber onde o trabalho esta agora: `docs/session/current-state.md`
+- quer consultar historico antigo: `docs/logbook/`
+- quer ver um procedimento operacional: `docs/runbooks/`
+
+## Resumo final
+
+Hoje o projeto ja tem uma base solida de organizacao, validacao, seguranca e documentacao.
+
+O que falta agora nao e estrutura. O que falta e preencher varios desses arquivos com o conhecimento real da bancada, dos sensores, das portas, dos comandos e dos problemas encontrados no uso diario.

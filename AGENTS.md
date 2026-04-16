@@ -81,6 +81,18 @@ Este arquivo registra as definicoes centrais do repositorio `lab-esp`.
 - `./scripts/deploy`
 - `./scripts/rollback`
 
+## Contexto para novas sessoes
+
+Arquivos de consulta recorrente:
+
+- `AGENTS.md`
+- `CONVENTIONS.md`
+- `POLICY_AI.md`
+- `docs/context/core.md`
+- `docs/context/loading-rules.md`
+- `docs/context/task-map.md`
+- `docs/session/current-state.md`
+
 ## Definition of Done da base
 
 - `npm run build` funciona

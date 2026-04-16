@@ -15,6 +15,7 @@ O foco desta primeira fase e validar firmware, comunicacao serial, rotinas de te
 
 Se voce quer entender o repositorio sem entrar em detalhes tecnicos:
 
+- `docs/index.md`
 - `docs/guia-nao-tecnico.md`
 - `docs/README.md`
 - `docs/decisions.md`
