@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+[ "${LAB_ESP_GATEKEEPER:-}" = "ai-run-gates" ] || fail "scripts/_ci-core e interno. Use ./scripts/ai-run gates."
+
+log "CI local iniciado"
+log "Etapa preflight"
+require_security_gate_prereqs
+
+log "Etapa context"
+npm run context:check
+"$(dirname "$0")/format"
+"$(dirname "$0")/lint"
+"$(dirname "$0")/test"
+"$(dirname "$0")/security"
+log "CI local concluido"

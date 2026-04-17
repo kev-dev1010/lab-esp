@@ -3,10 +3,18 @@ set -euo pipefail
 source "$(dirname "$0")/_lib.sh"
 
 log "Preparando ambiente do projeto"
+log "Validando prerequisitos obrigatorios da maquina para o fluxo oficial"
+require_security_gate_prereqs
+
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
   cp .env.example .env
   log "Arquivo .env criado a partir de .env.example"
 fi
 
 npm install
-log "Setup finalizado"
+log "Dependencias npm instaladas"
+
+log "Validando o gate inicial do fluxo oficial"
+npm run context:check
+
+log "Setup finalizado: ambiente pronto para seguir com ./scripts/ai-run bootstrap e ./scripts/ai-run gates"

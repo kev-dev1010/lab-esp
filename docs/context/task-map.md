@@ -2,6 +2,17 @@
 
 Voltar para o [indice mestre](../index.md).
 
+## Nova sessao (bootstrap)
+
+Carregar:
+
+- [README.md](../../README.md)
+- [core.md](./core.md)
+- [loading-rules.md](./loading-rules.md)
+- [current-state.md](../session/current-state.md)
+- [session-bootstrap-workflow.md](../tasks/session-bootstrap-workflow.md)
+- [prompt de bootstrap](../../prompts/bootstrap.md)
+
 ## Implementar feature
 
 Carregar:

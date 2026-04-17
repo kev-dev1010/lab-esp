@@ -1,3 +1,3 @@
 import { bootstrap } from "./main.js";
 
-console.log(bootstrap());
+process.stdout.write(`${bootstrap()}\n`);

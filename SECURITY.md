@@ -24,7 +24,11 @@ Manter uma base segura para experimentacao com ESP32, comunicacao serial e autom
 
 `npm audit` roda localmente pelo script de seguranca.
 
-Semgrep e Gitleaks foram preparados na base, mas podem exigir instalacao local ou execucao via CI dependendo do ambiente.
+Semgrep e Gitleaks agora sao gates locais obrigatorios. Se a ferramenta nao estiver instalada, `./scripts/security` e `./scripts/ci` devem falhar.
+
+`./scripts/security` tambem valida a presenca de `semgrep.yml` e `.gitleaks.toml`.
+
+`./scripts/setup` so deve declarar o ambiente pronto depois de validar os pre-requisitos obrigatorios da maquina para esse gate.
 
 ## Itens a detalhar depois
 

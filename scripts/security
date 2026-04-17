@@ -3,18 +3,10 @@ set -euo pipefail
 source "$(dirname "$0")/_lib.sh"
 
 log "Etapa security"
+require_security_gate_prereqs
+
 npm audit --audit-level=high
-
-if command -v semgrep >/dev/null 2>&1; then
-  semgrep --config semgrep.yml
-else
-  log "Semgrep nao encontrado no ambiente local. Configure a ferramenta para checagem completa."
-fi
-
-if command -v gitleaks >/dev/null 2>&1; then
-  gitleaks dir . --config .gitleaks.toml
-else
-  log "Gitleaks nao encontrado no ambiente local. Configure a ferramenta para checagem completa."
-fi
+semgrep --config semgrep.yml
+gitleaks dir . --config .gitleaks.toml
 
 log "Security concluido"

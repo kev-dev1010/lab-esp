@@ -18,6 +18,11 @@ Este documento transforma as ideias principais dos PDFs de referencia em uma lis
 - [x] separacao entre contexto permanente, contexto por tarefa, estado atual e historico
 - [x] preparacao para sandbox agentico futuro
 - [x] documentacao navegavel por indice
+- [x] bootstrap explicito de nova sessao
+- [x] entrypoint unico de automacao para forcar bootstrap e selecao de tarefa
+- [x] gate final oficial consolidado em `./scripts/ai-run gates`
+- [x] contrato da maquina local explicitado
+- [x] papel opcional de sandbox e Docker documentado
 
 ## O que ainda falta preencher com conteudo real
 
@@ -33,9 +38,9 @@ Este documento transforma as ideias principais dos PDFs de referencia em uma lis
 - [ ] transformar `docs/runbooks/rollback.md` em procedimento real
 - [ ] transformar `docs/runbooks/incident.md` em procedimento real
 - [ ] definir `SBOM_POLICY` em `AGENTS.md`
-- [ ] deixar `scripts/ai-run` operacional
-- [ ] deixar `scripts/ai-jail-enable` operacional
-- [ ] deixar `scripts/ai-dry-run` operacional
+- [x] deixar `scripts/ai-run` operacional
+- [x] deixar `scripts/ai-jail-enable` operacional como validador minimo de sandbox
+- [x] deixar `scripts/ai-dry-run` operacional
 
 ## O que ainda falta para o uso de IA ficar mais maduro
 

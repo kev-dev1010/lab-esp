@@ -27,6 +27,7 @@ Hoje o projeto ja oferece:
 - modelos de prompt para tarefas recorrentes com IA
 - um jeito de separar o que e contexto permanente, o que e tarefa atual e o que e historico
 - um bloco de estado atual da sessao, separado do historico bruto
+- um servidor HTTP simples para inspecionar o sistema de contexto e validar a coerencia basica da documentacao
 - preparacao para um uso futuro de IA com mais autonomia, mas com limites
 
 Se voce quiser um resumo mais focado em capacidades e configuracoes, veja [o-que-a-base-ja-faz.md](./o-que-a-base-ja-faz.md).
@@ -101,13 +102,32 @@ Mostra quais configuracoes de ambiente podem existir, sem guardar valores reais.
 
 E o centro da configuracao do projeto em Node.js. Ele define scripts e dependencias.
 
+Agora ele tambem inclui scripts para subir um servidor de validacao de contexto e para validar o enforcement local do fluxo.
+
 #### `tsconfig.json`, `eslint.config.js`, `.prettierrc.json`, `vitest.config.ts`
 
 Esses arquivos definem como o projeto valida codigo, formata arquivos e roda testes.
 
+#### `src/context-docs.ts`, `src/context-server.ts` e `src/ai-flow.ts`
+
+Esses arquivos implementam um servidor simples que le a documentacao do projeto e responde endpoints para:
+
+- saude do sistema
+- resumo do contexto central
+- simulacao de carregamento por tipo de tarefa
+- leitura do estado atual
+- validacao basica da consistencia dos arquivos Markdown
+
+Eles agora tambem implementam o enforcement do fluxo de automacao:
+
+- bootstrap obrigatorio de sessao
+- roteamento obrigatorio por tipo de tarefa
+- estado local da sessao automatizada
+- falha dura quando o contexto versionado estiver inconsistente
+
 #### `Dockerfile`
 
-Prepara uma forma padronizada de executar o projeto em container.
+Prepara uma forma padronizada opcional de executar o projeto em container.
 
 ## Pasta `docs/`
 
@@ -149,12 +169,15 @@ Explica o que deve ser carregado sempre, o que deve ser carregado por tarefa e o
 
 Funciona como um roteador. Ele diz quais arquivos consultar para cada tipo de trabalho.
 
+Agora ele tambem inclui o bootstrap explicito de nova sessao como um fluxo oficial.
+
 ### `docs/tasks/`
 
 Guarda os fluxos por tipo de tarefa.
 
 Ali ficam orientacoes para:
 
+- bootstrap de nova sessao
 - implementar feature
 - corrigir bug
 - revisar mudanca
@@ -220,6 +243,7 @@ Guarda modelos de prompt para tarefas recorrentes com IA.
 
 Hoje existem prompts para:
 
+- bootstrap
 - feature
 - bugfix
 - review
@@ -234,7 +258,15 @@ Esta pasta concentra os comandos oficiais do projeto.
 
 ### `scripts/setup`
 
-Prepara o ambiente local.
+Prepara o ambiente local de forma consistente com o fluxo oficial.
+
+Agora ele:
+
+- valida os pre-requisitos obrigatorios da maquina
+- instala dependencias npm
+- roda o gate inicial de contexto
+
+Se Node.js 22 LTS, `npm`, `semgrep` ou `gitleaks` estiverem ausentes, ele falha em vez de fingir que o ambiente esta pronto.
 
 ### `scripts/format`
 
@@ -252,9 +284,15 @@ Roda testes e cobertura.
 
 Roda checagens de seguranca.
 
+Agora ele falha se as ferramentas obrigatorias ou os arquivos de configuracao do gate estiverem ausentes.
+
 ### `scripts/ci`
 
-Executa o fluxo principal de verificacao do projeto.
+Agora ele nao executa mais a esteira por conta propria.
+
+Ele existe como um atalho compativel que redireciona obrigatoriamente para `scripts/ai-run gates`.
+
+O trabalho tecnico da esteira ficou concentrado em `scripts/_ci-core`, sempre chamado pelo gate oficial.
 
 ### `scripts/deploy` e `scripts/rollback`
 
@@ -262,7 +300,17 @@ Existem como base, mas ainda dependem da definicao operacional completa.
 
 ### `scripts/ai-dry-run`, `scripts/ai-run` e `scripts/ai-jail-enable`
 
-Existem para preparar um uso mais controlado de IA no futuro.
+Agora esses scripts deixaram de ser apenas preparacao:
+
+- `scripts/ai-run` virou o entrypoint oficial da automacao
+- `scripts/ai-dry-run` simula o roteamento sem gravar estado
+- `scripts/ai-jail-enable` valida a configuracao minima de sandbox antes de qualquer uso agentico futuro
+
+## Pasta `.ai/`
+
+Pode aparecer localmente durante o uso de automacao.
+
+Ela guarda um pequeno estado de sessao (`session-lock.json`) para impedir que a automacao pule bootstrap ou selecao de tarefa.
 
 ## Pasta `src/`
 
@@ -288,6 +336,8 @@ Hoje ela ja inclui:
 ## Pasta `sandbox/`
 
 Guarda a preparacao para uma futura automacao mais autonoma com IA em ambiente isolado.
+
+Ela nao e obrigatoria para o modo assistido atual.
 
 ## Pasta `infra/`
 
@@ -319,4 +369,6 @@ Guarda um ambiente padronizado por container para desenvolvimento, se isso for u
 
 Hoje o projeto ja tem uma base solida de organizacao, validacao, seguranca e documentacao.
 
-O que falta agora nao e estrutura. O que falta e preencher varios desses arquivos com o conhecimento real da bancada, dos sensores, das portas, dos comandos e dos problemas encontrados no uso diario.
+O que falta agora nao e mais apenas estrutura documental. O fluxo principal de automacao ja tem enforcement local.
+
+Os gaps restantes estao concentrados em conteudo operacional real e no futuro modo agentico completo.

@@ -4,6 +4,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Carregar antes de começar
 
+- [session-bootstrap-workflow.md](./session-bootstrap-workflow.md)
 - [core.md](../context/core.md)
 - [current-state.md](../session/current-state.md)
 - [serial-and-ports.md](../knowledge/serial-and-ports.md)

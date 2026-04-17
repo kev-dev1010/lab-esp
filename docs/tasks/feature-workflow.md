@@ -4,6 +4,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Carregar antes de começar
 
+- [session-bootstrap-workflow.md](./session-bootstrap-workflow.md)
 - [core.md](../context/core.md)
 - [current-state.md](../session/current-state.md)
 - [testing.md](../knowledge/testing.md)
@@ -22,7 +23,7 @@ Voltar para o [indice mestre](../index.md).
 3. decidir quais testes automatizados cobrem a mudanca
 4. decidir se existe parte dependente de hardware
 5. implementar em mudancas pequenas
-6. validar com `./scripts/ci`
+6. validar com `./scripts/ai-run gates`
 7. atualizar documentacao se a feature mudar fluxo, comando ou estrutura
 8. se algum arquivo ou diretorio foi adicionado, removido, renomeado ou teve sua responsabilidade alterada, atualizar tambem `docs/guia-nao-tecnico.md`
 

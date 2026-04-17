@@ -1,7 +1,15 @@
 # Lista de exemplo de comandos permitidos
+./scripts/ai-run bootstrap
+./scripts/ai-run task
+./scripts/ai-run dry-run
+./scripts/ai-run check
+./scripts/ai-run status
+./scripts/ai-run gates
+./scripts/ai-jail-enable
 ./scripts/setup
 ./scripts/format
 ./scripts/lint
 ./scripts/test
 ./scripts/security
 ./scripts/ci
+npm run context:check

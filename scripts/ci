@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-source "$(dirname "$0")/_lib.sh"
 
-log "CI local iniciado"
-"$(dirname "$0")/format"
-"$(dirname "$0")/lint"
-"$(dirname "$0")/test"
-"$(dirname "$0")/security"
-log "CI local concluido"
+"$(dirname "$0")/ai-run" gates

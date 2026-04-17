@@ -23,3 +23,5 @@ Esta pasta nao e historico bruto. Ela deve conter um resumo curto do ponto atual
 ## Regra de uso
 
 Sempre atualizar `current-state.md` ao final de uma sessao relevante.
+
+Toda automacao nova deve passar primeiro por `./scripts/ai-run bootstrap`, que usa este arquivo como resumo vivo obrigatorio.

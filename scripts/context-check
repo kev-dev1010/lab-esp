@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/_lib.sh"
+
+branch="${LAB_ESP_BRANCH:-$(git branch --show-current)}"
+
+log "Validando contexto para a branch ${branch}"
+LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts check

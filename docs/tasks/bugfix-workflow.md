@@ -4,6 +4,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Carregar antes de começar
 
+- [session-bootstrap-workflow.md](./session-bootstrap-workflow.md)
 - [core.md](../context/core.md)
 - [current-state.md](../session/current-state.md)
 - [known-issues.md](../knowledge/known-issues.md)
@@ -23,7 +24,7 @@ Voltar para o [indice mestre](../index.md).
 3. identificar se o bug e de software, integracao ou hardware
 4. criar ou ajustar teste para capturar a regressao
 5. corrigir com a menor mudanca possivel
-6. validar com `./scripts/ci`
+6. validar com `./scripts/ai-run gates`
 7. se o problema for recorrente, registrar em [known-issues.md](../knowledge/known-issues.md)
 8. se a correcao mudar a estrutura do projeto, atualizar tambem `docs/guia-nao-tecnico.md`
 

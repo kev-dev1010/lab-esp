@@ -8,6 +8,8 @@ Esta pasta reune os materiais que explicam como o repositorio esta organizado e 
 - `guia-nao-tecnico.md`: explicacao simples do papel de cada pasta e arquivo
 - `o-que-a-base-ja-faz.md`: resumo simples do que a base ja entrega e do que ainda falta
 - `checklist-alinhamento-pdfs.md`: lista rastreavel do que ja foi absorvido dos PDFs e do que ainda falta
+- `knowledge/local-machine-contract.md`: define o que significa uma maquina estar no contrato do projeto
+- `knowledge/ai-operation-modes.md`: separa modo assistido atual, modo agentic futuro e papel opcional de sandbox/Docker
 - `architecture.md`: visao estrutural do projeto
 - `decisions.md`: indice rapido das principais decisoes
 
@@ -24,6 +26,6 @@ Esta pasta reune os materiais que explicam como o repositorio esta organizado e 
 ## Navegacao recomendada
 
 - `index.md` para encontrar o arquivo certo por objetivo
-- `context/` para bootstrap de novas sessoes
+- `context/` e `tasks/session-bootstrap-workflow.md` para bootstrap de novas sessoes
 - `session/` para saber onde o trabalho esta agora
 - `logbook/` apenas para historico e auditoria

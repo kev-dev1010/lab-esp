@@ -62,6 +62,12 @@ Existe validacao local por comandos e validacao remota via GitHub Actions.
 
 Na pratica, isso significa que o projeto ja nasceu com uma linha de defesa contra mudancas quebradas.
 
+Agora a esteira local tambem falha cedo se o contexto versionado estiver incoerente.
+
+E o `setup` agora nao declara mais o ambiente como pronto se a maquina ainda nao tiver os pre-requisitos obrigatorios dos gates locais.
+
+O gate final local agora tambem passa obrigatoriamente por `./scripts/ai-run gates`, reduzindo a chance de pular bootstrap ou selecao de tarefa.
+
 ### 5. Ja tem uma forma de usar IA com mais ordem
 
 A base ja separa:
@@ -74,6 +80,8 @@ A base ja separa:
 
 Essa organizacao foi inspirada nos PDFs de referencia e ajuda a economizar contexto em sessoes futuras.
 
+Agora a automacao tambem precisa passar por um bootstrap explicito de sessao e por um roteamento de tarefa antes de seguir.
+
 ### 6. Ja se prepara para um uso futuro mais autonomo de IA
 
 Mesmo com o projeto ainda em modo assistido, a base ja traz:
@@ -83,6 +91,8 @@ Mesmo com o projeto ainda em modo assistido, a base ja traz:
 - politica explicita de limites
 
 Ou seja: a estrutura ja pensa em autonomia futura, mas sem fingir que isso esta pronto hoje.
+
+Esse preparo nao significa que Docker ou sandbox sejam obrigatorios no modo assistido atual.
 
 ## O que ja esta configurado
 
@@ -118,6 +128,9 @@ Ou seja: a estrutura ja pensa em autonomia futura, mas sem fingir que isso esta 
 - uso assistido como modo atual
 - prompts versionados
 - regras de dados e limites em `POLICY_AI.md`
+- `./scripts/ai-run` como entrypoint unico da automacao
+- bootstrap explicito de sessao antes de qualquer tarefa automatizada
+- `./scripts/ai-run gates` como gate final oficial do modo assistido
 - preparacao para modo agentico futuro com isolamento
 
 ## O que foi inspirado pelos PDFs e ja entrou na base
@@ -144,7 +157,8 @@ As principais lacunas hoje sao:
 - portas, sensores e setups reais ainda precisam ser documentados
 - problemas recorrentes ainda precisam ser promovidos para a base de conhecimento
 - runbooks ainda precisam sair do modo de modelo e virar procedimento real
-- o modo agentico ainda nao esta operacional
+- o modo agentico ainda nao esta operacional, mesmo com a preparacao de sandbox
+- sandbox e Docker ainda sao opcionais e dependem da necessidade real do projeto
 
 ## Como saber onde o projeto esta agora
 

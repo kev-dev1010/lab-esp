@@ -7,9 +7,6 @@ coverage/
 .idea/
 .vscode/
 .devcontainer/.cache/
-Boilerplate agnóstico para desenvolvimento com IA.pdf
-Boilerplate agnóstico para desenvolvimento com IA.txt
-Fundação reutilizável para dominar IA aplicada ao desenvolvimento de software.pdf
-Fundação reutilizável para dominar IA aplicada ao desenvolvimento de software.txt
-Melhores modos de programar com IA inspirados por AkitaOnRails.pdf
-Melhores modos de programar com IA inspirados por AkitaOnRails.txt
+.ai/
+sandbox/ai-jail/config.yml
+akitaway/

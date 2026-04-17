@@ -23,6 +23,11 @@ Este documento define os limites de uso de IA no projeto `lab-esp`.
 
 - modo atual: `assistido`
 - humano no loop: obrigatorio
+- toda automacao deve passar por `./scripts/ai-run`
+- bootstrap de nova sessao e obrigatorio antes de selecionar qualquer tarefa automatizada
+- a tarefa automatizada deve ser roteada por `./scripts/ai-run task <tipo>` para forcar o uso de `task-map.md` e `current-state.md`
+- o gate final oficial do modo assistido e `./scripts/ai-run gates`
+- modo assistido nao exige Docker ou sandbox por padrao
 - modo `agentic`: somente no futuro, com sandbox ativo e politica mantida
 
 ## Regras para automacao agentica futura
@@ -33,6 +38,9 @@ Este documento define os limites de uso de IA no projeto `lab-esp`.
 - registrar comandos executados
 - revisar comandos sensiveis antes de execucao real
 - nunca executar saida de LLM diretamente como comando sem validacao
+- bloquear execucao agentica quando `AI_MODE` nao for `agentic`
+- avaliar se isolamento em container realmente faz sentido para o projeto antes de tornalo obrigatorio
+- considerar execucao controlada no host quando o projeto depender de hardware real, serial ou dispositivos locais
 
 ## Modelo e fornecedor
 

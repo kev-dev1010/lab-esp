@@ -17,6 +17,7 @@ Este arquivo e a porta de entrada para navegar o contexto do projeto sem carrega
 
 ## Fluxos por tarefa
 
+- [Bootstrap de nova sessao](./tasks/session-bootstrap-workflow.md)
 - [Implementar feature](./tasks/feature-workflow.md)
 - [Corrigir bug](./tasks/bugfix-workflow.md)
 - [Revisar mudanca](./tasks/review-workflow.md)
@@ -27,6 +28,8 @@ Este arquivo e a porta de entrada para navegar o contexto do projeto sem carrega
 ## Conhecimento recorrente
 
 - [Comandos usados](./knowledge/commands.md)
+- [Contrato da maquina local](./knowledge/local-machine-contract.md)
+- [Modos de operacao com IA](./knowledge/ai-operation-modes.md)
 - [Problemas conhecidos](./knowledge/known-issues.md)
 - [Estrategia de testes](./knowledge/testing.md)
 - [Serial e portas](./knowledge/serial-and-ports.md)
@@ -35,6 +38,7 @@ Este arquivo e a porta de entrada para navegar o contexto do projeto sem carrega
 
 ## Prompts reutilizaveis
 
+- [Prompt de bootstrap](../prompts/bootstrap.md)
 - [Prompt de feature](../prompts/feature.md)
 - [Prompt de bugfix](../prompts/bugfix.md)
 - [Prompt de review](../prompts/pr_review.md)

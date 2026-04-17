@@ -22,6 +22,8 @@ Este arquivo define combinados de organizacao e manutencao do projeto `lab-esp`.
 
 ## Regras de mudanca
 
+- toda automacao deve comecar por `./scripts/ai-run bootstrap`
+- toda automacao deve selecionar o tipo de tarefa com `./scripts/ai-run task <tipo>` antes de editar ou validar
 - preferir mudancas pequenas e revisaveis
 - evitar misturar refatoracao e funcionalidade nova no mesmo passo
 - adicionar ou ajustar testes quando o comportamento mudar
@@ -39,6 +41,7 @@ Este arquivo define combinados de organizacao e manutencao do projeto `lab-esp`.
 
 ## Regras de qualidade
 
+- `npm run context:check` deve passar
 - `npm run format:check` deve passar
 - `npm run lint` deve passar
 - `npm run typecheck` deve passar

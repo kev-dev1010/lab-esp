@@ -4,6 +4,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Sempre carregar
 
+- [README.md](../../README.md)
 - [AGENTS.md](../../AGENTS.md)
 - [CONVENTIONS.md](../../CONVENTIONS.md)
 - [POLICY_AI.md](../../POLICY_AI.md)
@@ -13,6 +14,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Carregar por tarefa
 
+- bootstrap: [tasks/session-bootstrap-workflow.md](../tasks/session-bootstrap-workflow.md)
 - feature: [tasks/feature-workflow.md](../tasks/feature-workflow.md)
 - bugfix: [tasks/bugfix-workflow.md](../tasks/bugfix-workflow.md)
 - review: [tasks/review-workflow.md](../tasks/review-workflow.md)
@@ -23,6 +25,8 @@ Voltar para o [indice mestre](../index.md).
 ## Carregar quando houver duvida recorrente
 
 - comandos: [knowledge/commands.md](../knowledge/commands.md)
+- contrato da maquina: [knowledge/local-machine-contract.md](../knowledge/local-machine-contract.md)
+- modos de operacao com IA: [knowledge/ai-operation-modes.md](../knowledge/ai-operation-modes.md)
 - problemas conhecidos: [knowledge/known-issues.md](../knowledge/known-issues.md)
 - testes: [knowledge/testing.md](../knowledge/testing.md)
 - serial e portas: [knowledge/serial-and-ports.md](../knowledge/serial-and-ports.md)
@@ -43,8 +47,9 @@ Use o [logbook](../logbook/README.md) apenas para reconstruir contexto historico
 ## Ordem recomendada de consulta
 
 1. carregar contexto permanente
-2. carregar estado atual da sessao
-3. identificar o tipo de tarefa em [task-map.md](./task-map.md)
-4. carregar apenas os arquivos do fluxo correspondente
-5. consultar `knowledge/` quando houver duvida recorrente
-6. consultar `logbook/` apenas se o estado atual nao explicar o passado relevante
+2. executar o bootstrap explicito de sessao
+3. carregar estado atual da sessao
+4. identificar o tipo de tarefa em [task-map.md](./task-map.md)
+5. carregar apenas os arquivos do fluxo correspondente
+6. consultar `knowledge/` quando houver duvida recorrente
+7. consultar `logbook/` apenas se o estado atual nao explicar o passado relevante

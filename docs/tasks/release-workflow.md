@@ -4,6 +4,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Carregar antes de começar
 
+- [session-bootstrap-workflow.md](./session-bootstrap-workflow.md)
 - [current-state.md](../session/current-state.md)
 - [runbooks/deploy.md](../runbooks/deploy.md)
 - [runbooks/rollback.md](../runbooks/rollback.md)
@@ -17,7 +18,7 @@ Voltar para o [indice mestre](../index.md).
 
 ## Checklist minimo
 
-- `./scripts/ci` passou
+- `./scripts/ai-run gates` passou
 - a versao ou tag foi definida
 - o criterio de release esta claro
 - rollback esta entendido antes da publicacao

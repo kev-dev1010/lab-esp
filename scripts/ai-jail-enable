@@ -8,4 +8,20 @@ if [ ! -f "sandbox/ai-jail/config.yml" ] && [ -f "sandbox/ai-jail/config.example
   log "Arquivo sandbox/ai-jail/config.yml criado a partir do exemplo"
 fi
 
-placeholder "Definir ativacao real do sandbox"
+[ -f "sandbox/ai-jail/config.yml" ] || fail "Arquivo sandbox/ai-jail/config.yml nao encontrado."
+[ -f "sandbox/ai-jail/allowlist.example.txt" ] || fail "Arquivo sandbox/ai-jail/allowlist.example.txt nao encontrado."
+
+grep -q "^mode: restricted$" sandbox/ai-jail/config.yml || fail "Sandbox deve usar mode: restricted."
+grep -q "^  policy: deny$" sandbox/ai-jail/config.yml || fail "Sandbox deve bloquear rede por padrao."
+grep -q "^  allowlist_file: sandbox/ai-jail/allowlist.example.txt$" sandbox/ai-jail/config.yml || fail "Sandbox deve apontar para a allowlist versionada."
+
+if grep -qi "TODO\|placeholder" sandbox/ai-jail/config.yml; then
+  fail "Sandbox ainda contem campos placeholder. Ajuste sandbox/ai-jail/config.yml antes de seguir."
+fi
+
+if grep -Eq '^- `AI_MODE`: assistido$' AGENTS.md 2>/dev/null; then
+  log "Sandbox validado, mas o projeto segue em modo assistido. Automacao agentica continua bloqueada."
+  exit 0
+fi
+
+log "Sandbox validado e pronto para o modo agentic."

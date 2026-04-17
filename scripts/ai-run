@@ -2,12 +2,24 @@
 set -euo pipefail
 source "$(dirname "$0")/_lib.sh"
 
-if grep -q "AI_MODE: assistido" AGENTS.md 2>/dev/null; then
-  log "Modo atual assistido. Execucao agentica real ainda nao habilitada."
-fi
+command_name="${1:-}"
+branch="${LAB_ESP_BRANCH:-$(git branch --show-current)}"
 
-if grep -q "AI_MODE: agentic" AGENTS.md 2>/dev/null; then
-  [ -f "sandbox/ai-jail/config.yml" ] || fail "Sandbox nao habilitado. Rode ./scripts/ai-jail-enable"
-fi
-
-placeholder "Definir comando real do agente quando a estrategia de uso for escolhida"
+case "$command_name" in
+  bootstrap|task|dry-run|status|check)
+    log "Executando enforcement de automacao: ${command_name}"
+    LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts "$@"
+    ;;
+  gates)
+    log "Validando bootstrap e tarefa ativa antes dos gates finais"
+    LAB_ESP_INTERNAL=1 LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts assert-ci
+    LAB_ESP_GATEKEEPER=ai-run-gates "$(dirname "$0")/_ci-core"
+    LAB_ESP_INTERNAL=1 LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts mark-ci-passed
+    ;;
+  "")
+    fail "Uso: ./scripts/ai-run <bootstrap|task|dry-run|status|check|gates> [args]"
+    ;;
+  *)
+    fail "Comando invalido: ${command_name}"
+    ;;
+esac

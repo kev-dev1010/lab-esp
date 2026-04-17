@@ -22,6 +22,10 @@ Arquivos da raiz definem regras, limites, stack, seguranca e estado atual do pro
 
 `prompts/` e `sandbox/` guardam modelos reutilizaveis e os limites para uma automacao futura mais forte.
 
+No modo assistido atual, `sandbox/` e opcional e funciona como preparacao, nao como requisito universal.
+
 ## Camada 6: operacao e entrega
 
 `infra/`, `Dockerfile` e `docs/runbooks/` sustentam ambientes, release e rollback.
+
+`Dockerfile` existe como recurso opcional de empacotamento ou reproducibilidade, nao como precondicao do modo assistido.

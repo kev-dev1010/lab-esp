@@ -32,6 +32,7 @@ describe("documentacao de contexto", () => {
   it("mantem todos os cenarios principais roteados no task-map", () => {
     const taskMap = readProjectFile("docs/context/task-map.md");
 
+    expect(taskMap).toContain("## Nova sessao (bootstrap)");
     expect(taskMap).toContain("## Implementar feature");
     expect(taskMap).toContain("## Corrigir bug");
     expect(taskMap).toContain("## Revisar mudanca");
@@ -39,6 +40,7 @@ describe("documentacao de contexto", () => {
     expect(taskMap).toContain("## Trabalhar com ESP32, serial ou sensores");
     expect(taskMap).toContain("## Fazer release, deploy ou rollback");
 
+    expect(taskMap).toContain("../tasks/session-bootstrap-workflow.md");
     expect(taskMap).toContain("../tasks/feature-workflow.md");
     expect(taskMap).toContain("../tasks/bugfix-workflow.md");
     expect(taskMap).toContain("../tasks/review-workflow.md");
@@ -68,12 +70,18 @@ describe("documentacao de contexto", () => {
   });
 
   it("liga cada workflow ao contexto da sessao atual e ao prompt correto quando aplicavel", () => {
+    const bootstrapWorkflow = readProjectFile(
+      "docs/tasks/session-bootstrap-workflow.md"
+    );
     const featureWorkflow = readProjectFile("docs/tasks/feature-workflow.md");
     const bugfixWorkflow = readProjectFile("docs/tasks/bugfix-workflow.md");
     const reviewWorkflow = readProjectFile("docs/tasks/review-workflow.md");
     const securityWorkflow = readProjectFile("docs/tasks/security-workflow.md");
     const releaseWorkflow = readProjectFile("docs/tasks/release-workflow.md");
     const hardwareWorkflow = readProjectFile("docs/tasks/hardware-workflow.md");
+
+    expect(bootstrapWorkflow).toContain("../session/current-state.md");
+    expect(bootstrapWorkflow).toContain("../../prompts/bootstrap.md");
 
     expect(featureWorkflow).toContain("../session/current-state.md");
     expect(featureWorkflow).toContain("../../prompts/feature.md");
@@ -114,6 +122,7 @@ describe("documentacao de contexto", () => {
     expect(docsIndex).toContain("./guia-nao-tecnico.md");
     expect(docsIndex).toContain("./o-que-a-base-ja-faz.md");
     expect(docsIndex).toContain("./checklist-alinhamento-pdfs.md");
+    expect(docsIndex).toContain("./tasks/session-bootstrap-workflow.md");
     expect(docsIndex).toContain("./session/current-state.md");
     expect(docsIndex).toContain("./logbook/README.md");
   });

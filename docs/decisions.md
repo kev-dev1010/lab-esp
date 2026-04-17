@@ -17,8 +17,8 @@ Este arquivo serve como indice rapido das decisoes mais importantes do projeto.
 - merge so deve acontecer com CI verde e revisao humana nas mudancas relevantes
 - seguranca usara `npm audit`, Semgrep e Gitleaks
 - IA ficara em modo assistido
-- uso agentico futuro exigira ambiente isolado e containerizado
-- deploy alvo inicial sera local + Docker
+- uso agentico futuro exigira isolamento ou controle equivalente, sem tratar container como obrigatorio por padrao
+- deploy alvo inicial sera local, com Docker opcional quando fizer sentido
 - release sera manual por branch principal ou tag
 - rollback sera para a ultima versao estavel marcada
 
@@ -27,4 +27,4 @@ Este arquivo serve como indice rapido das decisoes mais importantes do projeto.
 - desenho dos modulos de comunicacao serial
 - estrategia de testes com hardware conectado
 - politica de tags e releases
-- estrutura de imagem Docker de producao
+- papel final de Docker no deploy ou no ambiente de desenvolvimento

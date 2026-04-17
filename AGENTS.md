@@ -15,6 +15,7 @@ Este arquivo registra as definicoes centrais do repositorio `lab-esp`.
 - `RUNTIME_VERSION`: Node.js 22 LTS
 - `PKG_MANAGER`: npm
 - `APP_ENTRYPOINT`: src/main.ts
+- `LOCAL_FLOW_PREREQUISITES`: Node.js 22 LTS, npm, Semgrep, Gitleaks
 
 ## Qualidade
 
@@ -59,19 +60,23 @@ Este arquivo registra as definicoes centrais do repositorio `lab-esp`.
 
 ## Sandbox
 
-- `SANDBOX_STRATEGY`: execucao isolada em ambiente controlado e containerizado para qualquer modo agentic futuro
+- `SANDBOX_STRATEGY`: opcional por necessidade do projeto; no futuro agentic, exigir isolamento ou controle equivalente sem presumir container como obrigatorio
 - `RW_PATHS`: diretorio do repositorio
 - `NET_RULES`: internet limitada a documentacao oficial e fontes confiaveis; sem acesso livre a rede interna
 - `CMD_ALLOWLIST`: comandos canonicos do repositorio e ferramentas aprovadas para validacao
 
 ## Deploy
 
-- `DEPLOY_TARGET`: local + Docker
+- `DEPLOY_TARGET`: local + Docker opcional
 - `RELEASE_STRATEGY`: manual por branch principal ou por tag
 - `ROLLBACK_STRATEGY`: voltar para a ultima versao estavel marcada por tag ou release anterior conhecida
 
 ## Comandos canonicos
 
+- `npm run context:check`
+- `./scripts/ai-run bootstrap`
+- `./scripts/ai-run task <tipo>`
+- `./scripts/ai-run gates`
 - `./scripts/setup`
 - `./scripts/format`
 - `./scripts/lint`
@@ -80,6 +85,8 @@ Este arquivo registra as definicoes centrais do repositorio `lab-esp`.
 - `./scripts/ci`
 - `./scripts/deploy`
 - `./scripts/rollback`
+
+`./scripts/ci` existe como alias compativel, mas o gate final oficial e `./scripts/ai-run gates`.
 
 ## Contexto para novas sessoes
 
@@ -91,12 +98,14 @@ Arquivos de consulta recorrente:
 - `docs/context/core.md`
 - `docs/context/loading-rules.md`
 - `docs/context/task-map.md`
+- `docs/knowledge/local-machine-contract.md`
+- `docs/knowledge/ai-operation-modes.md`
 - `docs/session/current-state.md`
 
 ## Definition of Done da base
 
 - `npm run build` funciona
-- `./scripts/ci` passa
+- `./scripts/ai-run gates` passa
 - testes unitarios e de integracao relevantes foram escritos
 - cobertura minima relevante caminha para 80%
 - documentacao e runbooks foram atualizados quando a estrutura mudou
