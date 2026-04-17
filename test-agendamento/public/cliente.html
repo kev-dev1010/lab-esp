@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cliente | Teste Agendamento</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Cliente</p>
+          <h1>Agende seu horário</h1>
+        </div>
+        <a class="link-chip" href="/painel.html">Ir para o painel</a>
+      </header>
+
+      <section class="grid two-columns">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Disponibilidade</p>
+              <h2 id="calendar-title">Calendário</h2>
+            </div>
+            <div class="calendar-actions">
+              <button id="prev-month" class="mini-button">Anterior</button>
+              <button id="next-month" class="mini-button">Próximo</button>
+            </div>
+          </div>
+          <div id="calendar" class="calendar"></div>
+          <div class="slot-section">
+            <h3 id="selected-date-label">Selecione um dia</h3>
+            <div id="slots" class="slot-list"></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Novo agendamento</p>
+              <h2>Registrar horário</h2>
+            </div>
+          </div>
+          <form id="booking-form" class="stack-form">
+            <label>
+              Serviço
+              <select id="service" required></select>
+            </label>
+            <label>
+              Nome
+              <input id="name" name="name" required />
+            </label>
+            <label>
+              Contato
+              <input id="contact" name="contact" required />
+            </label>
+            <label>
+              Dia escolhido
+              <input id="date" name="date" readonly required />
+            </label>
+            <label>
+              Horário escolhido
+              <input id="time" name="time" readonly required />
+            </label>
+            <label>
+              Observação
+              <textarea id="customer-message" rows="4"></textarea>
+            </label>
+            <button class="button" type="submit">Confirmar pedido</button>
+          </form>
+          <p id="client-feedback" class="feedback"></p>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/client.js"></script>
+  </body>
+</html>

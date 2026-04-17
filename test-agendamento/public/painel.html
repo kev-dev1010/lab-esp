@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel | Teste Agendamento</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Painel</p>
+          <h1>Nail designer</h1>
+        </div>
+        <a class="link-chip" href="/cliente.html"
+          >Ir para a agenda do cliente</a
+        >
+      </header>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Gestão</p>
+            <h2>Agendamentos ativos</h2>
+          </div>
+        </div>
+        <div id="appointments" class="appointment-list"></div>
+      </section>
+      <p id="admin-feedback" class="feedback"></p>
+    </main>
+
+    <script type="module" src="/admin.js"></script>
+  </body>
+</html>

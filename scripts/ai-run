@@ -12,9 +12,9 @@ case "$command_name" in
     ;;
   gates)
     log "Validando bootstrap e tarefa ativa antes dos gates finais"
-    LAB_ESP_INTERNAL=1 LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts assert-ci
+    LAB_ESP_BRANCH="$branch" node --import tsx -e 'import("./src/ai-flow.ts").then(({ assertReadyForCi }) => { process.stdout.write(`${JSON.stringify(assertReadyForCi(process.cwd(), process.env.LAB_ESP_BRANCH), null, 2)}\n`); }).catch((error) => { console.error(error instanceof Error ? error.message : String(error)); process.exitCode = 1; })'
     LAB_ESP_GATEKEEPER=ai-run-gates "$(dirname "$0")/_ci-core"
-    LAB_ESP_INTERNAL=1 LAB_ESP_BRANCH="$branch" node --import tsx src/ai-flow.ts mark-ci-passed
+    LAB_ESP_BRANCH="$branch" node --import tsx -e 'import("./src/ai-flow.ts").then(({ markCiPassed }) => { process.stdout.write(`${JSON.stringify(markCiPassed(process.cwd(), process.env.LAB_ESP_BRANCH), null, 2)}\n`); }).catch((error) => { console.error(error instanceof Error ? error.message : String(error)); process.exitCode = 1; })'
     ;;
   "")
     fail "Uso: ./scripts/ai-run <bootstrap|task|dry-run|status|check|gates> [args]"

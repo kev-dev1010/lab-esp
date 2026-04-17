@@ -268,14 +268,12 @@ function failWithUsage(message: string): never {
   );
 }
 
-function requireInternalCli(command: string) {
-  if (process.env.LAB_ESP_INTERNAL === "1") {
+function requireInternalCli() {
+  if (process.env.NODE_ENV === "test") {
     return;
   }
 
-  throw new Error(
-    `Comando interno bloqueado: '${command}'. Use ./scripts/ai-run gates.`
-  );
+  throw new Error("Comando interno nao permitido fora do ambiente de teste");
 }
 
 function parseTaskType(
@@ -339,11 +337,11 @@ if (isMainModule) {
         printJson(getAutomationStatus(rootDir));
         break;
       case "assert-ci":
-        requireInternalCli("assert-ci");
+        requireInternalCli();
         printJson(assertReadyForCi(rootDir));
         break;
       case "mark-ci-passed":
-        requireInternalCli("mark-ci-passed");
+        requireInternalCli();
         printJson(markCiPassed(rootDir));
         break;
       default:

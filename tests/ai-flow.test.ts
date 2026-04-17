@@ -23,9 +23,11 @@ import {
   getFlowStatePath,
   planAutomationTask
 } from "../src/ai-flow.js";
+import { getCurrentState } from "../src/context-docs.js";
 
 const rootDir = process.cwd();
 const flowStatePath = getFlowStatePath(rootDir);
+const activeBranch = getCurrentState(rootDir).activeBranch;
 let originalFlowState: string | null = null;
 
 function cleanupFlowState() {
@@ -63,18 +65,14 @@ describe("ai flow enforcement", () => {
   });
 
   it("exige bootstrap antes de selecionar uma tarefa", () => {
-    expect(() =>
-      planAutomationTask(rootDir, "feature", "test-context-validation")
-    ).toThrow(/Sessao nao bootstrapada/);
+    expect(() => planAutomationTask(rootDir, "feature", activeBranch)).toThrow(
+      /Sessao nao bootstrapada/
+    );
   });
 
   it("persiste bootstrap e roteia a tarefa oficial pelo task-map", () => {
-    const bootstrap = bootstrapAutomation(rootDir, "test-context-validation");
-    const task = planAutomationTask(
-      rootDir,
-      "feature",
-      "test-context-validation"
-    );
+    const bootstrap = bootstrapAutomation(rootDir, activeBranch);
+    const task = planAutomationTask(rootDir, "feature", activeBranch);
 
     expect(bootstrap.filesToLoad).toContain("docs/session/current-state.md");
     expect(task.prompt).toBe("prompts/feature.md");
@@ -82,7 +80,7 @@ describe("ai flow enforcement", () => {
     expect(task.filesToLoad).not.toContain("docs/tasks/hardware-workflow.md");
     expect(existsSync(getFlowStatePath(rootDir))).toBe(true);
 
-    const status = getAutomationStatus(rootDir, "test-context-validation");
+    const status = getAutomationStatus(rootDir, activeBranch);
 
     expect(status).toMatchObject({
       status: "task-selected",
@@ -91,7 +89,7 @@ describe("ai flow enforcement", () => {
   });
 
   it("bloqueia reuso de bootstrap em branch diferente", () => {
-    bootstrapAutomation(rootDir, "test-context-validation");
+    bootstrapAutomation(rootDir, activeBranch);
 
     expect(() =>
       planAutomationTask(rootDir, "feature", "outra-branch")
@@ -105,8 +103,10 @@ describe("ai flow enforcement", () => {
     expect(aiRun).not.toContain(
       "bootstrap|task|dry-run|status|check|assert-ci"
     );
-    expect(aiRun).toContain('LAB_ESP_INTERNAL=1 LAB_ESP_BRANCH="$branch"');
-    expect(aiFlow).toContain("Comando interno bloqueado");
+    expect(aiRun).not.toContain("LAB_ESP_INTERNAL");
+    expect(aiFlow).toContain(
+      "Comando interno nao permitido fora do ambiente de teste"
+    );
   });
 
   it("mantem a esteira tecnica interna protegida pelo gatekeeper", () => {
@@ -116,5 +116,12 @@ describe("ai flow enforcement", () => {
     expect(ciCore).toContain(
       'fail "scripts/_ci-core e interno. Use ./scripts/ai-run gates."'
     );
+  });
+
+  it("usa NODE_ENV=test como unica excecao para comandos internos", () => {
+    const aiFlow = readFileSync(path.join(rootDir, "src/ai-flow.ts"), "utf8");
+
+    expect(aiFlow).toContain('process.env.NODE_ENV === "test"');
+    expect(aiFlow).not.toContain("LAB_ESP_INTERNAL");
   });
 });

@@ -9,19 +9,16 @@ import {
 } from "../src/context-docs.js";
 
 const rootDir = process.cwd();
+const activeBranch = getCurrentState(rootDir).activeBranch;
 
 describe("context server routes", () => {
   it("retorna saude com a branch informada", () => {
-    const response = routeRequest(
-      rootDir,
-      "/health",
-      "test-context-validation"
-    );
+    const response = routeRequest(rootDir, "/health", activeBranch);
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toMatchObject({
       status: "ok",
-      branch: "test-context-validation"
+      branch: activeBranch
     });
   });
 
@@ -63,16 +60,12 @@ describe("context server routes", () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toMatchObject({
       objective: state.objective,
-      activeBranch: "test-context-validation"
+      activeBranch
     });
   });
 
   it("retorna validacao com os cenarios simulados", () => {
-    const response = routeRequest(
-      rootDir,
-      "/validate",
-      "test-context-validation"
-    );
+    const response = routeRequest(rootDir, "/validate", activeBranch);
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("validation");
@@ -111,7 +104,7 @@ describe("context validation", () => {
   });
 
   it("mantem a fundacao validada sem lacunas de enforcement conhecidas", () => {
-    const validation = runContextValidation(rootDir, "test-context-validation");
+    const validation = runContextValidation(rootDir, activeBranch);
 
     expect(validation.ok).toBe(true);
     expect(validation.issues).toEqual([]);

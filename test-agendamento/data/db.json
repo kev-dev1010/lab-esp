@@ -1,0 +1,54 @@
+{
+  "businessHours": {
+    "startHour": 9,
+    "endHour": 18,
+    "slotMinutes": 60
+  },
+  "workingDays": [1, 2, 3, 4, 5, 6],
+  "services": [
+    {
+      "id": "manicure-gel",
+      "name": "Manicure em gel",
+      "durationMinutes": 60,
+      "price": 80
+    },
+    {
+      "id": "blindagem",
+      "name": "Blindagem",
+      "durationMinutes": 60,
+      "price": 65
+    },
+    {
+      "id": "alongamento",
+      "name": "Alongamento",
+      "durationMinutes": 120,
+      "price": 120
+    }
+  ],
+  "appointments": [
+    {
+      "id": "apt-seed-1",
+      "name": "Larissa Costa",
+      "contact": "(11) 99999-1122",
+      "serviceId": "blindagem",
+      "date": "2026-04-20",
+      "time": "10:00",
+      "status": "confirmado",
+      "customerMessage": "Se possivel, acabamento mais discreto.",
+      "adminReply": "Perfeito, deixei anotado.",
+      "createdAt": "2026-04-15T10:00:00.000Z"
+    },
+    {
+      "id": "apt-seed-2",
+      "name": "Camila Souza",
+      "contact": "(11) 98888-4411",
+      "serviceId": "manicure-gel",
+      "date": "2026-04-21",
+      "time": "14:00",
+      "status": "pendente",
+      "customerMessage": "Quero tons de nude.",
+      "adminReply": "",
+      "createdAt": "2026-04-16T09:20:00.000Z"
+    }
+  ]
+}

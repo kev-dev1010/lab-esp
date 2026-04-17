@@ -4,9 +4,25 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist/**", "coverage/**", "node_modules/**"]
+    ignores: ["dist/**", "coverage/**", "node_modules/**", ".ai/**"]
   },
   js.configs.recommended,
+  {
+    files: ["test-agendamento/server.js"],
+    languageOptions: {
+      globals: {
+        ...globals.node
+      }
+    }
+  },
+  {
+    files: ["test-agendamento/public/**/*.js"],
+    languageOptions: {
+      globals: {
+        ...globals.browser
+      }
+    }
+  },
   ...tseslint.configs.recommended,
   {
     files: ["**/*.ts"],

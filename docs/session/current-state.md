@@ -8,7 +8,7 @@ Fechar o modo assistido como fluxo oficial do projeto, com gate final consolidad
 
 ## Branch ativa
 
-- `test-context-validation`
+- `test/all-scenarios-validation`
 
 ## Onde estamos agora
 

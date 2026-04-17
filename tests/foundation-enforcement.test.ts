@@ -20,6 +20,7 @@ import {
 } from "../src/ai-flow.js";
 import {
   createRouteHandler,
+  getCurrentState,
   getTaskContext,
   routeRequest,
   runContextValidation
@@ -37,6 +38,7 @@ const fixturePaths = [
   "scripts"
 ] as const;
 const fixtureDirs: string[] = [];
+const sourceBranch = getCurrentState(sourceRoot).activeBranch;
 
 function createFixture(): string {
   const fixtureRoot = mkdtempSync(
@@ -86,10 +88,7 @@ describe("foundation enforcement validation", () => {
       `${docsIndex}\n- [Externo](https://example.com)\n- [Ancora](#topo)\n- [Quebrado](./nao-existe.md)\n`
     );
 
-    const validation = runContextValidation(
-      fixtureRoot,
-      "test-context-validation"
-    );
+    const validation = runContextValidation(fixtureRoot, sourceBranch);
     const details = validation.issues.map((issue) => issue.details).join("\n");
 
     expect(validation.ok).toBe(false);
@@ -133,10 +132,7 @@ describe("foundation enforcement validation", () => {
       loadingRules.replace("- [README.md](../../README.md)\n", "")
     );
 
-    const validation = runContextValidation(
-      fixtureRoot,
-      "test-context-validation"
-    );
+    const validation = runContextValidation(fixtureRoot, sourceBranch);
     const details = validation.issues.map((issue) => issue.details).join("\n");
 
     expect(validation.ok).toBe(false);
@@ -180,10 +176,7 @@ describe("foundation enforcement validation", () => {
       "#!/usr/bin/env bash\nset -euo pipefail\n./scripts/test\n"
     );
 
-    const validation = runContextValidation(
-      fixtureRoot,
-      "test-context-validation"
-    );
+    const validation = runContextValidation(fixtureRoot, sourceBranch);
     const causes = validation.issues.map((issue) => issue.cause);
 
     expect(validation.ok).toBe(false);
@@ -239,10 +232,7 @@ Objetivo minimo.
 `
     );
 
-    const validation = runContextValidation(
-      fixtureRoot,
-      "test-context-validation"
-    );
+    const validation = runContextValidation(fixtureRoot, sourceBranch);
     const causes = validation.issues.map((issue) => issue.cause);
 
     expect(validation.ok).toBe(false);
@@ -272,24 +262,22 @@ describe("foundation enforcement runtime", () => {
   it("exige tarefa selecionada antes dos gates finais e registra validacao depois", () => {
     const fixtureRoot = createFixture();
 
-    bootstrapAutomation(fixtureRoot, "test-context-validation");
+    bootstrapAutomation(fixtureRoot, sourceBranch);
 
-    expect(() =>
-      assertReadyForCi(fixtureRoot, "test-context-validation")
-    ).toThrow(/Nenhuma tarefa foi selecionada/);
-    expect(() => markCiPassed(fixtureRoot, "test-context-validation")).toThrow(
+    expect(() => assertReadyForCi(fixtureRoot, sourceBranch)).toThrow(
+      /Nenhuma tarefa foi selecionada/
+    );
+    expect(() => markCiPassed(fixtureRoot, sourceBranch)).toThrow(
       /Nao ha tarefa ativa/
     );
 
-    planAutomationTask(fixtureRoot, "feature", "test-context-validation");
+    planAutomationTask(fixtureRoot, "feature", sourceBranch);
 
-    expect(
-      assertReadyForCi(fixtureRoot, "test-context-validation")
-    ).toMatchObject({
+    expect(assertReadyForCi(fixtureRoot, sourceBranch)).toMatchObject({
       activeTask: "feature",
       gateCommand: "./scripts/ai-run gates"
     });
-    expect(markCiPassed(fixtureRoot, "test-context-validation")).toMatchObject({
+    expect(markCiPassed(fixtureRoot, sourceBranch)).toMatchObject({
       status: "validated",
       activeTask: "feature"
     });
@@ -302,7 +290,7 @@ describe("foundation enforcement runtime", () => {
       "docs/context/task-map.md"
     ).replace("## Nova sessao (bootstrap)", "## Bootstrap removido");
 
-    bootstrapAutomation(fixtureRoot, "test-context-validation");
+    bootstrapAutomation(fixtureRoot, sourceBranch);
 
     expect(() =>
       planAutomationTask(
@@ -311,15 +299,15 @@ describe("foundation enforcement runtime", () => {
           Parameters<typeof planAutomationTask>[1],
           never
         >,
-        "test-context-validation"
+        sourceBranch
       )
     ).toThrow(/Task-map nao roteia o tipo de tarefa/);
 
     writeFixture(fixtureRoot, "docs/context/task-map.md", brokenTaskMap);
 
-    expect(() =>
-      bootstrapAutomation(fixtureRoot, "test-context-validation")
-    ).toThrow(/Fluxo bloqueado por inconsistencias de fundacao/);
+    expect(() => bootstrapAutomation(fixtureRoot, sourceBranch)).toThrow(
+      /Fluxo bloqueado por inconsistencias de fundacao/
+    );
   });
 
   it("responde 404 para task desconhecida e serializa JSON pelo route handler", () => {
